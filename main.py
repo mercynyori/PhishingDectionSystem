@@ -38,4 +38,17 @@ df["Email Type"] = df["Email Type"].map({
 #confirmation 
 print(df["Email Type"].unique())
 
+#how many 0 and 1 values i have 
+print(df["Email Type"].value_counts())
 
+#import the TfidVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+#object of the TF-IDF
+vectorizer = TfidfVectorizer() 
+
+#converting emails text to numbers
+x = vectorizer.fit_transform(df["Email Text"])
+
+#converting emails type to numbers
+y = df["Email Type"]
