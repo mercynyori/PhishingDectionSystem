@@ -41,14 +41,35 @@ print(df["Email Type"].unique())
 #how many 0 and 1 values i have 
 print(df["Email Type"].value_counts())
 
+#defining the x,y
+x = df["Email Text"]
+y = df["Email Type"]
+
 #import the TfidVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 #object of the TF-IDF
 vectorizer = TfidfVectorizer() 
+x = vectorizer.fit_transform(x)
 
-#converting emails text to numbers
-x = vectorizer.fit_transform(df["Email Text"])
+#dividing training and testing emails
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, random_state = 42)
 
-#converting emails type to numbers
-y = df["Email Type"]
+#Logistic Regression
+from sklearn.linear_model import LogisticRegression 
+
+#creating model
+model = LogisticRegression()
+
+#Learning the pattern between x and y
+model.fit(x_train, y_train)
+
+#Predicting unseen emails
+y_pred = model.predict(x_test)
+
+#accuracy
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, y_pred)
+
+print("accuracy", accuracy)
