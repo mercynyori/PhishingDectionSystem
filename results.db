@@ -1,0 +1,6 @@
+import sqlite3
+print(f"sqlite is ready!")
+
+#creates a database where i can store the reusults after training and testing
+conn = sqlite3.connect("results.db")
+CREATE TABLE results
