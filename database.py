@@ -15,7 +15,22 @@ CREATE TABlE IF NOT EXISTS results (
 """ )
 conn.commit()#Save the table creation
 
+email = "This is trial email"
+prediction = 1
+
 cursor.execute(#add new row of data in the database
-    "INSERT INTO results (email_text, prediction) VALUES (?,?)", (email, int(prediction[0])) 
+    "INSERT INTO results (email_text, prediction) VALUES (?,?)", (email, prediction) 
 )
+
 conn.commit()
+cursor.execute(
+    "SELECT * FROM results"
+)
+row = cursor.fetchall()
+
+for row in row:
+     print(row)
+
+     
+     conn.close()
+
