@@ -1,6 +1,7 @@
 
 
 import pandas as pd
+import sqlite3
 
 #loading the dataset for python to read it
 df = pd.read_csv("Phishing_Email.csv", encoding="latin-1")
