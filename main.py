@@ -50,7 +50,7 @@ y = df["Email Type"]
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 #object of the TF-IDF
-vectorizer = TfidfVectorizer() 
+vectorizer = TfidfVectorizer()
 x = vectorizer.fit_transform(x)
 
 #dividing training and testing emails

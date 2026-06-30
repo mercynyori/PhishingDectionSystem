@@ -18,3 +18,16 @@ def database_table():
     conn.commit()#Save the table creation
     conn.close()
 
+def saving_results():
+    # here we save the results from the databse 
+     conn = sqlite3.connect("results.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "INSERT INTO results (email_text, prediction) VALUES (?, ?)",
+        (email_text, prediction)
+    )
+
+    conn.commit()
+    conn.close()
+
