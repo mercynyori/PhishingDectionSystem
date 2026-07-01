@@ -2,7 +2,7 @@ import sqlite3
 print(f"sqlite is ready!")
 
 
-def database_table():
+def create_table():
 #creates a database where i can store the reusults after training and testing
     conn = sqlite3.connect("results.db")
     cursor = conn.cursor()

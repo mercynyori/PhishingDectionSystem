@@ -77,8 +77,14 @@ accuracy = accuracy_score(y_test, y_pred)
 
 print("accuracy", accuracy)
 
-from database import  database_table,  saving_results 
+from database import  create_table,  saving_results 
 import joblib
+
+create_table() #this create the table ones the pragram starts not everztime coz every time will waste time
+
+#this is always  return a trained brain
+model = joblib.load("model.pkl")
+vectorizer = joblib.load("vectorizer.pkl")
 
 #start the loop to get the email u `need thid is the CLI part`
 while True:
@@ -97,7 +103,5 @@ print("This is a phisshing enauk" if prediction == 1 else "This is a afe email")
 
     # saving it SQLite
 saving_results(email, prediction)
-
-
 
 
