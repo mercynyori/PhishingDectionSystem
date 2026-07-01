@@ -49,6 +49,7 @@ y = df["Email Type"]
 #import the TfidVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 #object of the TF-IDF
 vectorizer = TfidfVectorizer()
 x = vectorizer.fit_transform(x)
@@ -59,6 +60,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, rando
 
 #Logistic Regression
 from sklearn.linear_model import LogisticRegression 
+
 
 #creating model
 model = LogisticRegression()
@@ -74,4 +76,28 @@ from sklearn.metrics import accuracy_score
 accuracy = accuracy_score(y_test, y_pred)
 
 print("accuracy", accuracy)
+
+from database import  database_table,  saving_results 
+import joblib
+
+#start the loop to get the email u `need thid is the CLI part`
+while True:
+    email = input(" Input the email: ")
+
+    if email.lower() == "exit":
+        break
+   #s convert to numbers
+email_vector = vectorizer.transform([email])
+
+    # predict the email 
+prediction = model.predict(email_vector)[0]
+
+    # show result from the database part
+print("This is a phisshing enauk" if prediction == 1 else "This is a afe email")
+
+    # saving it SQLite
+saving_results(email, prediction)
+
+
+
 
